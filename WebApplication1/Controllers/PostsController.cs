@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
-        [HttpPut("update-book-by-id/{id}")]
+        [HttpPut("update-post-by-id/{id}")]
 
         public IActionResult UpdatePostById(int id,[FromBody]PostVM post)
         {
@@ -46,5 +46,14 @@ namespace WebApplication1.Controllers
 
             return Ok(updatedPost);
         }
+        [HttpDelete("delete-post-by-id/{id}")]
+        public IActionResult DeletePostById(int id)
+        {
+            _postsService.DeletePostById(id);
+
+
+            return Ok();
+        }
+
     }
 }

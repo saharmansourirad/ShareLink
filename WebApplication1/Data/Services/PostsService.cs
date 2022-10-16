@@ -39,7 +39,6 @@ namespace WebApplication1.Data.Services
 
         }
 
-
         public List<Post> GetAllPosts() => _context.Posts.ToList();
 
         public Post GetPostById(int Id) => _context.Posts.FirstOrDefault(n => n.postId == Id);
@@ -70,5 +69,15 @@ namespace WebApplication1.Data.Services
             return _post;
         }
 
+        public void DeletePostById(int Id)
+        {
+            var _post = _context.Posts.FirstOrDefault(n => n.postId == Id);
+                if(_post!=null)
+            {
+                _context.Posts.Remove(_post);
+                _context.SaveChanges();
+            }
+        }
     }
+
 }
