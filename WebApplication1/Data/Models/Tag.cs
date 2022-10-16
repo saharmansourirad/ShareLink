@@ -17,7 +17,7 @@ namespace WebApplication1.Data.Models
 
         public bool isActive { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+        public ICollection<PostTag> Posts { get; set; }
 
 
     }

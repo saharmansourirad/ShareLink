@@ -55,16 +55,11 @@ namespace WebApplication1.Migrations
                     date = table.Column<long>(type: "bigint", nullable: false),
                     time = table.Column<int>(type: "int", nullable: false),
                     discription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    tagId = table.Column<int>(type: "int", nullable: true)
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.postId);
-                    table.ForeignKey(
-                        name: "FK_Posts_Tags_tagId",
-                        column: x => x.tagId,
-                        principalTable: "Tags",
-                        principalColumn: "tagId");
                     table.ForeignKey(
                         name: "FK_Posts_Users_userName",
                         column: x => x.userName,
@@ -174,11 +169,6 @@ namespace WebApplication1.Migrations
                 name: "IX_Likes_userName",
                 table: "Likes",
                 column: "userName");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Posts_tagId",
-                table: "Posts",
-                column: "tagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_userName",

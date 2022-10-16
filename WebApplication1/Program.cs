@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
+
+//Config the services
+
+builder.Services.AddTransient<PostsService>();
  
 var app = builder.Build();
 

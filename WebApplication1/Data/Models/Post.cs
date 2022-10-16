@@ -14,8 +14,6 @@ namespace WebApplication1.Models
 
         public User User { get; set; }
 
-   
-
         public string link { get; set; }
 
         public string image { get; set; }
@@ -28,6 +26,7 @@ namespace WebApplication1.Models
 
         public string discription { get; set; }
 
+        public bool isActive { get; set; }
 
         //public ICollection<Tag> Tags { get; set; }
 
