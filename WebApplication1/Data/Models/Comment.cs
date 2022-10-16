@@ -1,18 +1,32 @@
-﻿namespace WebApplication1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication1.Models
 {
     public class Comment
     {
-        public int id { get; set; }
-
+        [Key]
+        public int commentId { get; set; }
         public string userName { get; set; }
-
-        public string userProfile { get; set; }
+        public User User { set; get; }// foreign key to user
 
         public string comment { get; set; }
+        public long date { get; set; }
+        public string time { get; set; }
+        public bool isActive { get; set; }
 
-        public DateTime commentDate { get; set; }
+        public int postId { get; set; }
+        public Post Post { get; set; }//foreign key to post
 
-        public int likes { get; set; }
-      
+
+        // public List<Post> Post { get; set; }
+
+
+
+
+
+        // public int likes { get; set; }
+
     }
+
+
 }
