@@ -17,7 +17,7 @@ namespace WebApplication1.Data.Services
         {
             var _post = new Post()
             {
-                //userName = post.userName,
+                userName = post.userName,
 
                 link = post.link,
 

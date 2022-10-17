@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using WebApplication1.Data.Models;
 
 namespace WebApplication1.Models
@@ -8,7 +9,7 @@ namespace WebApplication1.Models
         
         public int userId { get; set; }
 
-        [Key]
+     [Key]
         public string userName { get; set; }
 
         public string userProfile { set; get; }

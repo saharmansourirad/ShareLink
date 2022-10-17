@@ -4,7 +4,7 @@ namespace WebApplication1.Data.Models.ViewModels
 {
     public class PostVM
     {
-        //public string userName { get; set; } //foregion key from user
+        public string userName { get; set; } //foregion key from user
 
         public string link { get; set; }
 

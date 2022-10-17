@@ -24,6 +24,8 @@ namespace WebApplication1.Controllers
             return Ok(allPosts);
         }
 
+      
+
         [HttpGet("get-post-by-id/{id}")]
         public IActionResult GetPostById(int id)
         {

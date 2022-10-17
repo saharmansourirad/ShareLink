@@ -16,10 +16,15 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
 
+
+
+
 //Config the services
 
 builder.Services.AddTransient<PostsService>();
- 
+builder.Services.AddTransient<CommentsService>();
+builder.Services.AddTransient<UsersService>();
+
 var app = builder.Build();
 
 

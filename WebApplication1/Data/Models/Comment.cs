@@ -14,7 +14,7 @@ namespace WebApplication1.Models
         public string time { get; set; }
         public bool isActive { get; set; }
 
-        public int postId { get; set; }
+        public int? postId { get; set; }
         public Post Post { get; set; }//foreign key to post
 
 
