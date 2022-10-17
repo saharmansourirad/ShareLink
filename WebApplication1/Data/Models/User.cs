@@ -10,6 +10,8 @@ namespace WebApplication1.Models
         public int userId { get; set; }
 
      [Key]
+
+        //[Indexed(Unique = true)]
         public string userName { get; set; }
 
         public string userProfile { set; get; }

@@ -24,6 +24,8 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString
 builder.Services.AddTransient<PostsService>();
 builder.Services.AddTransient<CommentsService>();
 builder.Services.AddTransient<UsersService>();
+builder.Services.AddTransient<LikesService>();
+builder.Services.AddTransient<TagsService>();
 
 var app = builder.Build();
 

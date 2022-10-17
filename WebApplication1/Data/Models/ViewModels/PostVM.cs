@@ -19,6 +19,7 @@ namespace WebApplication1.Data.Models.ViewModels
         public string discription { get; set; }
 
         public bool isActive { get; set; }
+
         //public ICollection<PostTag> Tags { get; set; }/
 
     }

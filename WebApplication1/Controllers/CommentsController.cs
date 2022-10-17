@@ -10,25 +10,25 @@ namespace WebApplication1.Controllers
 
     public class CommentsController : ControllerBase
     {
-        public CommentsService _commentService;
+        public CommentsService _commentsService;
 
         public CommentsController(CommentsService commentsService)
         {
-            _commentService = commentsService;
+            _commentsService = commentsService;
         }
 
 
         [HttpPost("add-comment")]
         public IActionResult AddComment([FromBody]CommentVM comment)//[FromBody] from body of teh request
         {
-            _commentService.AddComment(comment);
+            _commentsService.AddComment(comment);
             return Ok();
         }
 
         [HttpGet("get-all-comments")]
         public IActionResult GetAllComments()
         {
-            var allComments = _commentService.GetAllComments();
+            var allComments = _commentsService.GetAllComments();
             return Ok(allComments);
         }
 
@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
         [HttpGet("get-comment-by-id/{id}")]
         public IActionResult GetPostById(int id)
         {
-            var post = _commentService.GetCommentById(id);
+            var post = _commentsService.GetCommentById(id);
             return Ok(post);
         }
 
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
         [HttpDelete("delete-comment-by-id/{id}")]
         public IActionResult DeleteCommentById(int id)
         {
-            _commentService.DeleteComentById(id);
+            _commentsService.DeleteComentById(id);
             return Ok();
         }
     }
