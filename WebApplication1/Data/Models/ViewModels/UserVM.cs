@@ -3,7 +3,7 @@
     public class UserVM
     {
 
-        public int userId { get; set; }
+        //public int userId { get; set; }
 
         public string userName { get; set; }
 

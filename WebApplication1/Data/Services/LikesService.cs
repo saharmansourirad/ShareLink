@@ -15,21 +15,32 @@ namespace WebApplication1.Data.Services
 
         public void AddLike(LikeVM like)
         {
-            var _like = new Like()
+
+            var __like = _context.Likes.FirstOrDefault(n => n.postId == like.postId);
+             if(__like!=null && __like.userName == like.userName)
             {
 
-                postId = like.postId,
+                    this.DeleteLikeById(__like.likeId); 
+            }
+             else
+            {
+                var _like = new Like()
+                {
 
-                userName= like.userName,
+                    postId = like.postId,
 
-                date=like.date,
+                    userName = like.userName,
 
-                time=like.time,
+                    date = like.date,
 
-                isActive=like.isActive
-         };
-            _context.Likes.Add(_like);//add data to database
-            _context.SaveChanges();
+                    time = like.time,
+
+                    isActive = like.isActive
+                };
+                _context.Likes.Add(_like);//add data to database
+                _context.SaveChanges();
+            }
+          
 
         }
 

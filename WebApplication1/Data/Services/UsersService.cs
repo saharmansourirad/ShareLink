@@ -15,7 +15,7 @@ namespace WebApplication1.Data.Services
 
         public void AddUser(UserVM user)
         {
-            var __user = _context.Users.FirstOrDefault(n => n.userId == user.userId);
+            var __user = _context.Users.FirstOrDefault(n => n.userName == user.userName);
             if (__user == null)
             {
                 var _user = new User()
@@ -34,7 +34,7 @@ namespace WebApplication1.Data.Services
 
                     email = user.email,
 
-                    userId = user.userId
+                    //userId = user.userId
                 };
                 _context.Users.Add(_user);
                 _context.SaveChanges();
@@ -44,7 +44,9 @@ namespace WebApplication1.Data.Services
 
         public List<User> GetAllUsers() => _context.Users.ToList();
 
-        public User GetUserById(int Id) => _context.Users.FirstOrDefault(n => n.userId == Id);
+        public User GetUserById(int Id) => _context.Users.FirstOrDefault(n => n.userId == Id);    
+        
+        public User GetUserByUserName(string UserName) => _context.Users.FirstOrDefault(n => n.userName == UserName);
 
         public User UpdateUserById(int Id, UserVM user)
         {

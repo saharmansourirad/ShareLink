@@ -3,7 +3,7 @@
     public class TagVM
     {
 
-        public int tagId { get; set; }
+        //public int tagId { get; set; }
 
         public string tag { get; set; }
 

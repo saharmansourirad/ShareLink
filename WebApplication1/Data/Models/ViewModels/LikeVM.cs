@@ -5,7 +5,7 @@ namespace WebApplication1.Data.Models.ViewModels
     public class LikeVM
     {
        
-        public int likeId { get; set; }
+        //public int likeId { get; set; }
 
 
         public int postId { get; set; }

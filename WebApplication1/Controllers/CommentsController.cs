@@ -25,10 +25,10 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
-        [HttpGet("get-all-comments")]
-        public IActionResult GetAllComments()
+        [HttpGet("get-all-comments-by-postid")]
+        public IActionResult GetAllComments(int postId)
         {
-            var allComments = _commentsService.GetAllComments();
+            var allComments = _commentsService.GetAllComments(postId);
             return Ok(allComments);
         }
 

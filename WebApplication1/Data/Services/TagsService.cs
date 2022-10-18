@@ -12,24 +12,75 @@ namespace WebApplication1.Data.Services
             _context = context;
         }
 
-        public void AddTag(TagVM tag)
+        public void AddTag(string tag)
         {
-            var _tag = new Tag()
-            {
-                 tagId=tag.tagId,
+            
+                var _tag = new Tag()
+                {
 
-                 tag=tag.tag,
+                    tag = tag,
 
-                date=tag.date,
+                    date = (long)Convert.ToDouble("1100.25"),
 
-                time=tag.time,
+                    time = "201312",
 
-                isActive=tag.isActive
+                    isActive = true
 
-            };
-            _context.Tags.Add(_tag);
-            _context.SaveChanges();
+                };
+                _context.Tags.Add(_tag);
+                _context.SaveChanges();  
+                
+                ////add posttag
+            
+            //else if(__tag!=null)
+            //{
+            //    var __postTag = _context.PostTags.Where(n => n.tagId == __tag.tagId && n.postId==postId).ToList();
+            //    var _p=
+            //     var __myTagPost= 
+            //    if (__postTag.tagId != __tag.tagId)
+
+            //    {
+            //        var _postTag = new PostTag()
+            //        {
+
+            //            postId = postId,
+
+            //            tagId= __tag.tagId
+            //        };
+            //    }
+              
+                 
+
+                
+            //}
+
         }
+
+        //public void AddTag(TagVM tag)
+        //{
+        //    var __tag= _context.Tags.FirstOrDefault(n => n.tag == tag.tag);
+
+        //    if(__tag==null)
+        //    {
+        //        var _tag = new Tag()
+        //        {
+
+        //            tag = tag.tag,
+
+        //            date = tag.date,
+
+        //            time = tag.time,
+
+        //            isActive = tag.isActive
+
+        //        };
+
+              
+        //        _context.Tags.Add(_tag);
+        //        _context.SaveChanges();
+        //    }
+           
+        //}
 
         public List<Tag> GetAllTags() => _context.Tags.ToList();
 
@@ -39,6 +90,17 @@ namespace WebApplication1.Data.Services
         public void DeleteTagById(int Id)
         {
             var _tag = _context.Tags.FirstOrDefault(n => n.tagId == Id);
+            if (_tag != null)
+            {
+                //_context.Tags.Remove(_tag);
+                _tag.isActive = false;
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteTagByTagName(string Tag)
+        {
+            var _tag = _context.Tags.FirstOrDefault(n => n.tag == Tag);
             if (_tag != null)
             {
                 //_context.Tags.Remove(_tag);

@@ -19,8 +19,9 @@ namespace WebApplication1.Data.Services
         {
             var _comment=new Comment()
             {
-
-                comment=comment.comment,
+               // userName= userName,
+                comment =comment.comment,
+                postId=comment.postId,
                 date=comment.date,
                 time=comment.time,
                 isActive=comment.isActive,
@@ -31,8 +32,37 @@ namespace WebApplication1.Data.Services
             _context.SaveChanges();
         }
 
-        public List<Comment> GetAllComments() => _context.Comments.ToList();
+        public List<CommentVM> GetAllComments(int postId)
+        {
+            List<CommentVM > finalCommentsList= new List<CommentVM>();
 
+            var comments = _context.Comments.Where(e => e.postId == postId).ToList();
+
+
+            foreach(Comment comment in comments)
+            {
+                var _comment = new CommentVM()
+                {
+                    userName = comment.userName,
+
+                    comment = comment.comment,
+
+                    date = comment.date,
+
+                    time = comment.time, 
+
+                    isActive = comment.isActive
+
+                };
+                finalCommentsList.Add(_comment);
+            }
+
+
+            return finalCommentsList;
+        } 
+
+        
+        
         public Comment GetCommentById(int Id) => _context.Comments.FirstOrDefault(n => n.commentId == Id);
 
 

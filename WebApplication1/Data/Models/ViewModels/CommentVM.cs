@@ -7,6 +7,7 @@ namespace WebApplication1.Data.Models.ViewModels
 
 
         public string userName { get; set; }
+        public int postId { get; set; }
         //public User User { set; get; }// foreign key to user
 
         public string comment { get; set; }

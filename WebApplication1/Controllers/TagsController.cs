@@ -16,33 +16,40 @@ namespace WebApplication1.Controllers
             _tagsService = tagsService;
         }
 
-        [HttpPost("add-like")]
-        public IActionResult AddLike([FromBody] TagVM tag)//[FromBody] from body of teh request
+        [HttpPost("add-tag")]
+        public IActionResult AddTag([FromBody] string tag)//[FromBody] from body of teh request
         {
             _tagsService.AddTag(tag);
             return Ok();
         }
 
-        [HttpGet("get-all-likes")]
-        public IActionResult GetAllLikes()
+        [HttpGet("get-all-tags")]
+        public IActionResult GetAllTags()
         {
-            var allLike = _tagsService.GetAllTags();
-            return Ok(allLike);
+            var allTags = _tagsService.GetAllTags();
+            return Ok(allTags);
         }
 
 
-        [HttpGet("get-like-by-id/{id}")]
-        public IActionResult GetlikeById(int id)
+        [HttpGet("get-tag-by-id/{id}")]
+        public IActionResult GetTagById(int id)
         {
-            var post = _tagsService.GetTagById(id);
-            return Ok(post);
+            var tag = _tagsService.GetTagById(id);
+            return Ok(tag);
         }
 
 
-        [HttpDelete("delete-like-by-id/{id}")]
-        public IActionResult DeleteLiById(int id)
+        [HttpDelete("delete-tag-by-id/{id}")]
+        public IActionResult DeleteTagById(int id)
         {
             _tagsService.DeleteTagById(id);
+            return Ok();
+        }
+
+        [HttpDelete("delet-tag-by-tagname")]
+        public IActionResult DeleteTagByTagName(string tagname)
+        {
+            _tagsService.DeleteTagByTagName(tagname);
             return Ok();
         }
     }

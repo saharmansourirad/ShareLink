@@ -37,6 +37,13 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
+        [HttpGet("get-user-by-username")]
+        public IActionResult GetUserByUserName(string username)
+        {
+            var user = _usersService.GetUserByUserName(username);
+            return Ok();
+        }
+
         [HttpPut("update-user-by-id/{id}")]
 
         public IActionResult UpdateUserById(int id, [FromBody] UserVM user)
