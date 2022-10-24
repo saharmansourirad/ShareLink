@@ -11,7 +11,7 @@ namespace WebApplication1.Data.Models.ViewModels
         //public User User { set; get; }// foreign key to user
 
         public string comment { get; set; }
-        public long date { get; set; }
+        public string date { get; set; }
         public string time { get; set; }
         public bool isActive { get; set; }
 

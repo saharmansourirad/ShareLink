@@ -31,18 +31,18 @@ namespace WebApplication1.Controllers
         }
 
 
-        [HttpGet("get-like-by-id/{id}")]
-        public IActionResult GetlikeById(int id)
+        [HttpGet("get-like-by-postid/{postid}")]
+        public IActionResult GeLikeByPostId(int id)
         {
-            var post = _likesService.GeLikeById(id);
+            var post = _likesService.GeLikeByPostId(id);
             return Ok(post);
         }
 
 
-        [HttpDelete("delete-like-by-id/{id}")]
-        public IActionResult DeleteLiById(int id)
+        [HttpDelete("delete-like-by-postid/{postid}")]
+        public IActionResult DeleteLikeByPostId(int postid)
         {
-            _likesService.DeleteLikeById(id);
+            _likesService.DeleteLikeByPostId(postid);
             return Ok();
         }
     }

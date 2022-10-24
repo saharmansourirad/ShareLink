@@ -20,9 +20,9 @@ namespace WebApplication1.Models
 
         public string title { get; set; }
 
-        public long date { set; get; }
+        public string date { set; get; }
 
-        public int time { set; get; }
+        public string time { set; get; }
 
         public string discription { get; set; }
 

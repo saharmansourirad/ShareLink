@@ -20,9 +20,9 @@ namespace WebApplication1.Data.Services
 
                     tag = tag,
 
-                    date = (long)Convert.ToDouble("1100.25"),
+                    date =  DateTime.Now.ToString("yyyy-MM-dd"),
 
-                    time = "201312",
+                    time = DateTime.Now.ToString("’HH’:’mm’:’ss"),
 
                     isActive = true
 
@@ -103,8 +103,8 @@ namespace WebApplication1.Data.Services
             var _tag = _context.Tags.FirstOrDefault(n => n.tag == Tag);
             if (_tag != null)
             {
-                //_context.Tags.Remove(_tag);
-                _tag.isActive = false;
+                _context.Tags.Remove(_tag);
+                //_tag.isActive = false;
                 _context.SaveChanges();
             }
         }

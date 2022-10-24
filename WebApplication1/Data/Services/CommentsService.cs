@@ -75,5 +75,24 @@ namespace WebApplication1.Data.Services
                 _context.SaveChanges();
             }
         }
+
+        public void DeleteComentsByPostId(int postId)
+        {
+           
+             var _comments = _context.Comments.Where(n => n.postId == postId).ToList();
+            if(_comments!=null)
+            {
+                foreach (Comment comment in _comments)
+                {
+                    _context.Comments.Remove(comment);
+                    _context.SaveChanges();
+                }
+            }
+        
+          
+              
+            
+        }
+
     }
 }

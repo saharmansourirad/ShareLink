@@ -47,5 +47,12 @@ namespace WebApplication1.Controllers
             _commentsService.DeleteComentById(id);
             return Ok();
         }
+
+        [HttpDelete ("delete-commenrts-by-postid/{postid}")]
+        public IActionResult DeleteComentsByIds(int postId)
+        {
+            _commentsService.DeleteComentsByPostId(postId);
+            return Ok();
+        }
     }
 }

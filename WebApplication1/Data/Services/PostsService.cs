@@ -13,7 +13,9 @@ namespace WebApplication1.Data.Services
 
         public CommentsService _commentsService;
 
-        public PostsService(AppDbContext context, TagsService tagsService,CommentsService commentsService)
+        public PostTagsService _postTagsService;
+
+        public PostsService(AppDbContext context, TagsService tagsService,CommentsService commentsService,PostTagsService postTagsService)
         {
 
             _context = context;
@@ -21,6 +23,8 @@ namespace WebApplication1.Data.Services
             _tagsService = tagsService;
 
             _commentsService = commentsService;
+
+            _postTagsService = postTagsService;
         }
 
         public void AddPost(PostVM post)
@@ -36,9 +40,11 @@ namespace WebApplication1.Data.Services
 
                 title = post.title,
 
-                date = post.date,
+                //dateTime =DateTime.Now.ToString("MM/dd/yyyy")
 
-                time = post.time,
+                date = DateTime.Now.ToString("yyyy-MM-dd"),
+
+                time = DateTime.Now.ToString("HH:mm:ss"),
 
                 discription = post.discription,
 
@@ -67,9 +73,9 @@ namespace WebApplication1.Data.Services
 
                         tag = tagsList[i],
 
-                        date = post.date,
+                        date = DateTime.Now.ToString("yyyy-MM-dd"),
 
-                        time = post.time.ToString(),
+                        time = DateTime.Now.ToString("HH:mm:ss"),
 
                         isActive = true
 
@@ -87,7 +93,7 @@ namespace WebApplication1.Data.Services
 
 
                     _context.PostTags.Add(_postTag);
-                    _context.SaveChanges();
+                   _context.SaveChanges();
                 }
                 else if(__tag!=null)
                 {
@@ -103,13 +109,13 @@ namespace WebApplication1.Data.Services
 
 
                     _context.PostTags.Add(_postTag);
-                    _context.SaveChanges();
+                  _context.SaveChanges();
                 }
 
-               
+             
             }
 
-
+            
         }
 
         public List<GetPostVM> GetAllPosts()
@@ -127,6 +133,8 @@ namespace WebApplication1.Data.Services
                 var postLikes = _context.Likes.Where(e => e.postId == postList[i].postId).Count();
 
                 var postComments = _context.Comments.Where(e => e.postId == postList[i].postId).Count();
+
+               
 
                 //var d = _context.Posts.Select(e => e.postId == postList[i].postId);
 
@@ -158,9 +166,7 @@ namespace WebApplication1.Data.Services
 
                     title = postList[i].title,
 
-                    date = postList[i].date,
-
-                    time = postList[i].time,
+                    sharedDate= postList[i].date+'T'+ postList[i].time+'Z',
 
                     discription = postList[i].discription,
 
@@ -198,9 +204,9 @@ namespace WebApplication1.Data.Services
 
                 _post.title = post.title;
 
-                _post.date = post.date;
+                _post.date = DateTime.Now.ToString("yyyy-MM-dd");
 
-                _post.time = post.time;
+                _post.time = DateTime.Now.ToString("HH:mm:ss");
 
                 _post.discription = post.discription;
 
@@ -217,10 +223,23 @@ namespace WebApplication1.Data.Services
             var _post = _context.Posts.FirstOrDefault(n => n.postId == Id);
                 if(_post!=null)
             {
+              
+
+                _postTagsService.DeletePosTagsByPostId(Id);
+
+                _commentsService.DeleteComentsByPostId(Id);
+
                 _context.Posts.Remove(_post);
+
                 _context.SaveChanges();
+
+
             }
+
+
+       
         }
+
     }
 
 }

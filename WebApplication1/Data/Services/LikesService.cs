@@ -16,46 +16,44 @@ namespace WebApplication1.Data.Services
         public void AddLike(LikeVM like)
         {
 
-            var __like = _context.Likes.FirstOrDefault(n => n.postId == like.postId);
-             if(__like!=null && __like.userName == like.userName)
+            List<Like> likes = _context.Likes.Where(n => n.postId == like.postId && n.userName == like.userName).ToList();
+
+            if(likes.Count == 0)
             {
+               
+                        var _like = new Like()
+                        {
 
-                    this.DeleteLikeById(__like.likeId); 
+                            postId = like.postId,
+
+                            userName = like.userName,
+
+                            date = DateTime.Now.ToString("yyyy-MM-dd"),
+
+                            time = DateTime.Now.ToString("HH:mm:ss"),
+
+                            isActive = like.isActive
+                        };
+                        _context.Likes.Add(_like);//add data to database
+                        _context.SaveChanges();    
+                
             }
-             else
-            {
-                var _like = new Like()
-                {
-
-                    postId = like.postId,
-
-                    userName = like.userName,
-
-                    date = like.date,
-
-                    time = like.time,
-
-                    isActive = like.isActive
-                };
-                _context.Likes.Add(_like);//add data to database
-                _context.SaveChanges();
-            }
-          
+   
 
         }
 
         public List<Like> GetAllLikes() => _context.Likes.ToList();
 
-        public Like GeLikeById(int Id) => _context.Likes.FirstOrDefault(n => n.likeId == Id);
+        public Like GeLikeByPostId(int PostId) => _context.Likes.FirstOrDefault(n => n.postId == PostId);
 
 
-        public void DeleteLikeById(int Id)
+        public void DeleteLikeByPostId(int PostId)
         {
-            var _like = _context.Likes.FirstOrDefault(n => n.likeId == Id);
+            var _like = _context.Likes.FirstOrDefault(n => n.postId == PostId);
             if (_like != null)
             {
-                //_context.Likes.Remove(_like);
-                _like.isActive = false;
+                _context.Likes.Remove(_like);
+                //_like.isActive = false;
                 _context.SaveChanges();
             }
         }

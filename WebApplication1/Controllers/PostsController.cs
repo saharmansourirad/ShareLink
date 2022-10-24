@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost("add-post")]
-        public IActionResult AddPost([FromBody]PostVM post)//[FromBody] from body of teh request
+        public IActionResult AddPost([FromBody]PostVM post)//[FromBody] from body of the request
         {
             _postsService.AddPost(post);
             return Ok();
@@ -49,7 +49,7 @@ namespace WebApplication1.Controllers
             return Ok(updatedPost);
         }
         [HttpDelete("delete-post-by-id/{id}")]
-        public IActionResult DeletePostById(int id)
+        public IActionResult DeletePostById( int id)
         {
             _postsService.DeletePostById(id);
 
